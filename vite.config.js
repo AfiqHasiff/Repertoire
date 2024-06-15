@@ -1,10 +1,9 @@
 import { defineConfig } from "vite";
-import svgr from "vite-plugin-svgr";
 import react from "@vitejs/plugin-react";
 import { fileURLToPath, URL } from "url";
 
 export default defineConfig({
-  plugins: [react(), svgr()],
+  plugins: [react()],
   base: "/mdc/",
   resolve: {
     alias: [
