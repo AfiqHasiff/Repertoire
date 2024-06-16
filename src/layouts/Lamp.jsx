@@ -15,7 +15,17 @@ export const LampComponent = () => {
         }}
         className="mt-8 bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl"
       >
-        Repertoire
+        <div id="repertoireMainDefinitionWrapper" className="flex flex-col items-center">
+          <span>Repertoire</span>
+          <span className="text-base">/ˈrɛpətwɑː/</span>
+        </div>
+        <div id="repertoireDefinitionWrapper" className="flex flex-col mt-3 text-base items-center">
+          <span>a stock of plays, dances, or items that a company or a performer knows or is prepared to perform.</span>
+          <div id="repertoireSimliarDefinitionWrapper" className="flex">
+            <span className="text-lime-400">Similar:&nbsp;&nbsp;</span>
+            <span>collection, stock, range, repertory, reserver, store, repository</span>
+          </div>
+        </div>
       </motion.h1>
     </LampContainer>
   );
