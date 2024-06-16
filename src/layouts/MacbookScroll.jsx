@@ -1,10 +1,9 @@
 import React from "react";
 import { MacbookScroll } from "../components/macbook-scroll";
-import { ThreeDCardComponent } from "../layouts";
 
 export function MacbookScrollComponent() {
   return (
-    <div className="overflow-hidden dark:bg-[#0B0B0F]">
+    <div className="overflow-hidden bg-slate-950">
       <MacbookScroll
         showGradient={false}
         lidDisplay={
