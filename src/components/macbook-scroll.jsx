@@ -26,7 +26,9 @@ import { IconCaretDownFilled } from "@tabler/icons-react";
 
 import { motion, useScroll, useTransform } from "framer-motion";
 
-export const MacbookScroll = ({ src, showGradient, title, badge }) => {
+// TODO: macbookScrollMainWrapper dynamic sizing
+
+export const MacbookScroll = ({ lidDisplay = <></>, showGradient, title, badge }) => {
   const ref = useRef();
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -41,8 +43,8 @@ export const MacbookScroll = ({ src, showGradient, title, badge }) => {
     }
   }, []);
 
-  const scaleX = useTransform(scrollYProgress, [0, 0.3], [1.2, isMobile ? 1 : 1.5]);
-  const scaleY = useTransform(scrollYProgress, [0, 0.3], [0.6, isMobile ? 1 : 1.5]);
+  const scaleX = useTransform(scrollYProgress, [0, 0.3], [1.2, isMobile ? 1 : 2.15]);
+  const scaleY = useTransform(scrollYProgress, [0, 0.3], [0.6, isMobile ? 1 : 2.15]);
   const translate = useTransform(scrollYProgress, [0, 1], [0, 1500]);
   const rotate = useTransform(scrollYProgress, [0.1, 0.12, 0.3], [-28, -28, 0]);
   const textTransform = useTransform(scrollYProgress, [0, 0.3], [0, 100]);
@@ -50,8 +52,9 @@ export const MacbookScroll = ({ src, showGradient, title, badge }) => {
 
   return (
     <div
+      id="macbookScrollMainWrapper"
       ref={ref}
-      className="min-h-[180vh]  flex flex-col items-center py-0 justify-start flex-shrink-0 [perspective:800px] transform md:scale-100  scale-[0.35] sm:scale-50"
+      className="min-h-[250vh] flex flex-col items-center py-0 md:py-80 justify-start flex-shrink-0 [perspective:800px] transform md:scale-100  scale-[0.35] sm:scale-50"
     >
       <motion.h2
         style={{
@@ -63,7 +66,7 @@ export const MacbookScroll = ({ src, showGradient, title, badge }) => {
         {title}
       </motion.h2>
       {/* Lid */}
-      <Lid src={src} scaleX={scaleX} scaleY={scaleY} rotate={rotate} translate={translate} />
+      <Lid lidDisplay={lidDisplay} scaleX={scaleX} scaleY={scaleY} rotate={rotate} translate={translate} />
       {/* Base area */}
       <div className="h-[22rem] w-[32rem] bg-gray-200 dark:bg-[#272729] rounded-2xl overflow-hidden relative -z-10">
         {/* above keyboard bar */}
@@ -92,7 +95,7 @@ export const MacbookScroll = ({ src, showGradient, title, badge }) => {
   );
 };
 
-export const Lid = ({ scaleX, scaleY, rotate, translate, src }) => {
+export const Lid = ({ scaleX, scaleY, rotate, translate, lidDisplay }) => {
   return (
     <div className="relative [perspective:800px]">
       <div
@@ -123,10 +126,9 @@ export const Lid = ({ scaleX, scaleY, rotate, translate, src }) => {
           transformStyle: "preserve-3d",
           transformOrigin: "top",
         }}
-        className="h-96 w-[32rem] absolute inset-0 bg-[#010101] rounded-2xl p-2"
+        className="h-96 w-[32rem] absolute inset-0 bg-[#010101] rounded-2xl p-2 overflow-hidden"
       >
-        <div className="absolute inset-0 bg-[#272729] rounded-lg" />
-        <img src={src} alt="" fill className="object-cover object-left-top absolute rounded-lg inset-0 h-full w-full" />
+        <div className="absolute inset-0 bg-[#272729] rounded-lg">{lidDisplay}</div>
       </motion.div>
     </div>
   );

@@ -5,7 +5,7 @@ const App = () => {
   return (
     <div id="appWrapper">
       <MacbookScrollComponent />
-      {/* <ThreeDCardComponent /> */}
+      <ThreeDCardComponent />
     </div>
   );
 };
